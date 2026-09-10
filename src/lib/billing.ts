@@ -1,4 +1,4 @@
-import type { Teacher } from './types';
+import type { Teacher } from './types.ts';
 
 export const TRIAL_DAYS = 30;
 export const PRICE_MONTHLY_AUD = 9;

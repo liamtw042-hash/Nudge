@@ -8,7 +8,7 @@ import { Empty, TopBar, useToast } from '@/components/ui';
 import { repo } from '@/data';
 import { access } from '@/lib/billing';
 import { config } from '@/lib/config';
-import { longDate, todayIso } from '@/lib/dates';
+import { isoDate, longDate, todayIso } from '@/lib/dates';
 import { cleanSlip, newSlip, shareText, slipDateRange, weekStatus } from '@/lib/slip';
 import type { Slip, Student } from '@/lib/types';
 
@@ -207,7 +207,7 @@ export function StudentPage() {
               <button type="button" className="btn quiet danger" onClick={() => void remove()}>
                 Delete
               </button>
-              <span className="small faint">Added {longDate(new Date(student.createdAt).toISOString().slice(0, 10))}</span>
+              <span className="small faint">Added {longDate(isoDate(new Date(student.createdAt)))}</span>
             </div>
           </div>
         )}

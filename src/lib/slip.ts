@@ -1,6 +1,6 @@
-import { daysBetween, isFuture, shortDate, slipDays } from './dates';
-import { shortId } from './ids';
-import type { Slip, SlipItem, Student } from './types';
+import { daysBetween, isFuture, shortDate, slipDays } from './dates.ts';
+import { shortId } from './ids.ts';
+import type { Slip, SlipItem, Student } from './types.ts';
 
 export const MAX_ITEMS = 8;
 export const DEFAULT_TARGET_DAYS = 5;

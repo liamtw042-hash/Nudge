@@ -93,9 +93,9 @@ export class FirestoreRepo implements Repo {
   }
 
   async updateStudent(id: string, patch: Partial<Student>): Promise<void> {
-    const { id: _ignored, ...rest } = patch;
-    void _ignored;
-    await updateDoc(doc(this.db, 'students', id), { ...rest, updatedAt: Date.now() });
+    const rest: Record<string, unknown> = { ...patch, updatedAt: Date.now() };
+    delete rest.id; // the id is the document path, never a field
+    await updateDoc(doc(this.db, 'students', id), rest);
   }
 
   async deleteStudent(id: string): Promise<void> {

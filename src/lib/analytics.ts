@@ -1,6 +1,6 @@
-import { mrr } from './billing';
-import { isoDate, weekStart } from './dates';
-import type { AppEvent, Teacher } from './types';
+import { mrr } from './billing.ts';
+import { isoDate, weekStart } from './dates.ts';
+import type { AppEvent, Teacher } from './types.ts';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 

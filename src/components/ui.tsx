@@ -26,7 +26,7 @@ export function Tick() {
 }
 
 export function TopBar({ minimal = false }: { minimal?: boolean }) {
-  const { user, teacher, signOut } = useAuth();
+  const { user, signOut } = useAuth();
   const isAdmin = !!user && config.adminEmails.includes(user.email.toLowerCase());
   return (
     <header className="topbar">
@@ -49,7 +49,7 @@ export function TopBar({ minimal = false }: { minimal?: boolean }) {
                 e.preventDefault();
                 void signOut();
               }}>
-              Sign out{teacher?.name ? '' : ''}
+              Sign out
             </a>
           </nav>
         ) : null}

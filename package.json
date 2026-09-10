@@ -10,7 +10,11 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check": "npm run typecheck && npm run test && vite build"
+    "check": "npm run typecheck && npm run test && vite build",
+    "ops:snapshot": "node scripts/ops/snapshot.ts",
+    "ops:weekly": "node scripts/ops/weekly.ts",
+    "ops:mark-sent": "node scripts/ops/mark-sent.ts",
+    "test:rules": "firebase emulators:exec --only firestore \"vitest run --dir rules-tests --config rules-tests/vitest.config.ts\""
   },
   "dependencies": {
     "firebase": "^12.19.0",
@@ -28,6 +32,9 @@
     "jsdom": "^30.0.1",
     "typescript": "^6.0.0",
     "vite": "^8.2.2",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.0",
+    "firebase-admin": "^13.0.0",
+    "@firebase/rules-unit-testing": "^5.0.2",
+    "firebase-tools": "^15.19.0"
   }
 }

@@ -4,13 +4,13 @@ import { useAuth } from '@/auth/AuthProvider';
 import { DayDots } from '@/components/DayDots';
 import { TopBar } from '@/components/ui';
 import { PRICE_MONTHLY_AUD, PRICE_YEARLY_AUD, TRIAL_DAYS } from '@/lib/billing';
-import { slipDays, todayIso } from '@/lib/dates';
+import { addDays, slipDays, todayIso } from '@/lib/dates';
 
 export function Landing() {
   const { user, loading } = useAuth();
   if (!loading && user) return <Navigate to="/app" replace />;
   const today = todayIso();
-  const demoDays = slipDays(shift(today, -4));
+  const demoDays = slipDays(addDays(today, -4));
   const demoLog: Record<string, true> = {};
   for (const d of demoDays.slice(0, 4)) if (d !== today) demoLog[d] = true;
 
@@ -123,10 +123,4 @@ function Feature({ title, body }: { title: string; body: string }) {
       </p>
     </div>
   );
-}
-
-function shift(iso: string, days: number): string {
-  const [y, m, d] = iso.split('-').map(Number);
-  const dt = new Date(y ?? 1970, (m ?? 1) - 1, (d ?? 1) + days);
-  return `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, '0')}-${String(dt.getDate()).padStart(2, '0')}`;
 }

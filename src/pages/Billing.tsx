@@ -5,7 +5,7 @@ import { TopBar, useToast } from '@/components/ui';
 import { repo } from '@/data';
 import { access, PRICE_MONTHLY_AUD, PRICE_YEARLY_AUD } from '@/lib/billing';
 import { config } from '@/lib/config';
-import { longDate } from '@/lib/dates';
+import { isoDate, longDate } from '@/lib/dates';
 
 /**
  * Billing without a payment processor: an invoice request the teacher pays
@@ -31,7 +31,7 @@ export function Billing() {
 
   const status =
     acc.state === 'active'
-      ? `Subscribed${teacher.planUntil ? ` until ${longDate(new Date(teacher.planUntil).toISOString().slice(0, 10))}` : ''}.`
+      ? `Subscribed${teacher.planUntil ? ` until ${longDate(isoDate(new Date(teacher.planUntil)))}` : ''}.`
       : acc.state === 'trial'
         ? `Free trial, ${acc.daysLeft} day${acc.daysLeft === 1 ? '' : 's'} left.`
         : acc.state === 'lapsed'

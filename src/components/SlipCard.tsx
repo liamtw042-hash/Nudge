@@ -1,3 +1,4 @@
+import { slipDays } from '@/lib/dates';
 import { slipDateRange, slipTitle } from '@/lib/slip';
 import type { Student } from '@/lib/types';
 
@@ -39,7 +40,7 @@ export function SlipCard({ student, today, onToggle, footer }: Props) {
                   Aim for {slip.targetDays} day{slip.targetDays === 1 ? '' : 's'}
                 </span>
               </div>
-              <DayDots days={slipDaysOf(slip.startDate)} log={student.log} today={today} onToggle={onToggle} />
+              <DayDots days={slipDays(slip.startDate)} log={student.log} today={today} onToggle={onToggle} />
             </div>
           </>
         ) : (
@@ -54,14 +55,4 @@ export function SlipCard({ student, today, onToggle, footer }: Props) {
       </div>
     </article>
   );
-}
-
-function slipDaysOf(startDate: string): string[] {
-  const out: string[] = [];
-  const [y, m, d] = startDate.split('-').map(Number);
-  for (let i = 0; i < 7; i++) {
-    const dt = new Date(y ?? 1970, (m ?? 1) - 1, (d ?? 1) + i);
-    out.push(`${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, '0')}-${String(dt.getDate()).padStart(2, '0')}`);
-  }
-  return out;
 }

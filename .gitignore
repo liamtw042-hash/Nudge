@@ -8,3 +8,9 @@ firebase-debug.log
 *.log
 .DS_Store
 coverage/
+
+# production pulls contain teacher emails; never commit them
+ops/data/snapshot.json
+ops/data/snapshot.previous.json
+ops/data/sendlist.json
+*service-account*.json
